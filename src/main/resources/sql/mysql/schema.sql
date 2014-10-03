@@ -19,3 +19,16 @@ create table ctb_user (
 	register_date timestamp not null default 0,
 	primary key (id)
 ) engine=InnoDB;
+
+CREATE TABLE `body_part_disease` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `code` varchar(32) NOT NULL,
+  `body_part_type` varchar(20) NOT NULL,
+  `body_part` varchar(20) NOT NULL,
+  `body_part_url` varchar(255) NOT NULL,
+  `disease` varchar(100) NOT NULL,
+  `disease_url` varchar(255) NOT NULL,
+  `from_site` varchar(20) NOT NULL,
+  `create_at` longtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
