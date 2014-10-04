@@ -1,6 +1,7 @@
 package com.ctb.rest;
 
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 import org.springside.modules.mapper.JsonMapper;
@@ -18,14 +19,18 @@ public class RestMessage  {
 	public static String getMessageBeanToString(String code) {
 		MessageBean msgBean = new MessageBean();
 		msgBean.setCode(code);
-		msgBean.setError(readValue(code));
+		msgBean.setMessage(readValue(code));
 		return  new JsonMapper().toJson(getMessageBean(code)).toString();
 	}
 	
 	public static MessageBean getMessageBean(String code) {
 		MessageBean msgBean = new MessageBean();
 		msgBean.setCode(code);
-		msgBean.setError(readValue(code));
+		try {
+			msgBean.setMessage(new String(readValue(code).getBytes(),"utf-8"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		return  msgBean;
 	}
 
@@ -45,11 +50,7 @@ public class RestMessage  {
 
 class MessageBean {
 	private String code;
-	private String error;
-
-	public String getError() {
-		return error;
-	}
+	private String message;
 
 	public String getCode() {
 		return code;
@@ -59,7 +60,12 @@ class MessageBean {
 		this.code = code;
 	}
 
-	public void setError(String error) {
-		this.error = error;
+	public String getMessage() {
+		return message;
 	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 }

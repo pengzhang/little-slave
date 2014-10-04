@@ -32,3 +32,13 @@ CREATE TABLE `body_part_disease` (
   `create_at` longtext NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+CREATE TABLE `body_part` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `code` varchar(32) NOT NULL,
+  `body_part_type` varchar(20) NOT NULL,
+  `body_part` varchar(20) NOT NULL,
+  `body_part_url` varchar(255) NOT NULL,
+  `create_at` longtext NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
