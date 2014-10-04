@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ctb.entity.BodyPart;
-import com.ctb.repository.BodyPartDao;
+import com.ctb.entity.disease.BodyPart;
+import com.ctb.repository.disease.BodyPartDao;
 
 
 @Component

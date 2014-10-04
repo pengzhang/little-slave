@@ -12,8 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ctb.entity.BodyPart;
-import com.ctb.entity.BodyPartDisease;
+import com.ctb.entity.disease.BodyPart;
+import com.ctb.entity.disease.BodyPartDisease;
+import com.ctb.repository.disease.DiseaseInfoDao;
 import com.ctb.util.JsoupUtil;
 
 @Component
@@ -26,7 +27,14 @@ public class SinaHealthPartCollect {
 
 	@Autowired
 	private BodyPartDiseaseService bodyPartDiseaseService;
+	
+	@Autowired
+	private DiseaseInfoDao diseaseInfoDao;
 
+	/**
+	 * 采集身体部位信息
+	 * @param url
+	 */
 	public void collectBodyPartInfo(String url) {
 		Document doc = JsoupUtil.getDoc(url);
 		Element element = doc.select(".mainBody .Fenlei #basic-accordian").first();
@@ -51,6 +59,10 @@ public class SinaHealthPartCollect {
 		collectBodyPartDiseaseInfo(bodyParts);
 	}
 
+	/**
+	 * 采集身体部位下的疾病信息
+	 * @param bodyParts
+	 */
 	public void collectBodyPartDiseaseInfo(List<BodyPart> bodyParts) {
 		List<BodyPartDisease> bodyPartDiseases = new ArrayList<BodyPartDisease>();
 		for (BodyPart bodyPart : bodyParts) {
@@ -71,4 +83,8 @@ public class SinaHealthPartCollect {
 			}
 		}
 	}
+	
+	
+	
+	
 }

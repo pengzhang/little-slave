@@ -3,15 +3,15 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *******************************************************************************/
-package com.ctb.repository;
+package com.ctb.repository.disease;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.ctb.entity.BodyPartDisease;
+import com.ctb.entity.disease.BodyPart;
 
-public interface BodyPartDiseaseDao extends PagingAndSortingRepository<BodyPartDisease, Long> {
+public interface BodyPartDao extends PagingAndSortingRepository<BodyPart, Long> {
 
-	BodyPartDisease findByCode(String code);
+	BodyPart findByCode(String code);
 
 
 }
