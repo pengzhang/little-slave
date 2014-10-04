@@ -15,12 +15,11 @@ public class DiseaseInfoService {
 	private DiseaseInfoDao diseaseInfoDao;
 
 	@Autowired
-	public void setDiseaseDao(DiseaseInfoDao diseaseInfoDao) {
+	public void setDiseaseInfoDao(DiseaseInfoDao diseaseInfoDao) {
 		this.diseaseInfoDao = diseaseInfoDao;
 	}
 	
 	public void save(DiseaseInfo disease_info){
 		diseaseInfoDao.save(disease_info);
 	}
-
 }

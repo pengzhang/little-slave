@@ -1,37 +1,32 @@
 package com.ctb.rest;
 
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 import org.springside.modules.mapper.JsonMapper;
-
 
 /**
  * Rest消息处理
  * 
  * @author zp
  */
-public class RestMessage  {
+public class RestMessage {
 
-	public RestMessage() {}
-	
+	public RestMessage() {
+	}
+
 	public static String getMessageBeanToString(String code) {
 		MessageBean msgBean = new MessageBean();
 		msgBean.setCode(code);
 		msgBean.setMessage(readValue(code));
-		return  new JsonMapper().toJson(getMessageBean(code)).toString();
+		return new JsonMapper().toJson(getMessageBean(code)).toString();
 	}
-	
+
 	public static MessageBean getMessageBean(String code) {
 		MessageBean msgBean = new MessageBean();
 		msgBean.setCode(code);
-		try {
-			msgBean.setMessage(new String(readValue(code).getBytes(),"utf-8"));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		return  msgBean;
+		msgBean.setMessage(readValue(code));
+		return msgBean;
 	}
 
 	public static String readValue(String key) {

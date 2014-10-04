@@ -7,6 +7,7 @@ package com.ctb.entity;
 
 import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,7 +39,7 @@ public abstract class IdEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	@Column(nullable=false)
 	public String getCode() {
 		return code;
 	}
@@ -46,7 +47,7 @@ public abstract class IdEntity {
 	public void setCode(String code) {
 		this.code = code;
 	}
-
+	@Column(nullable=false)
 	public Long getCreate_at() {
 		return create_at;
 	}

@@ -1,5 +1,6 @@
 package com.ctb.entity.disease;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -29,6 +30,7 @@ public class BodyPart extends IdEntity {
 	 */
 	private String bodyPartUrl;
 	
+	@Column(nullable=false)
 	public String getBodyPartType() {
 		return bodyPartType;
 	}
@@ -37,6 +39,7 @@ public class BodyPart extends IdEntity {
 		this.bodyPartType = bodyPartType;
 	}
 	
+	@Column(nullable=false)
 	public String getBodyPart() {
 		return bodyPart;
 	}
@@ -45,6 +48,7 @@ public class BodyPart extends IdEntity {
 		this.bodyPart = bodyPart;
 	}
 	
+	@Column(nullable=false)
 	public String getBodyPartUrl() {
 		return bodyPartUrl;
 	}

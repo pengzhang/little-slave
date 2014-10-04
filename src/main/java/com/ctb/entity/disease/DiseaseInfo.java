@@ -1,6 +1,10 @@
 package com.ctb.entity.disease;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -12,7 +16,7 @@ import com.ctb.entity.IdEntity;
  *
  */
 @Entity
-@Table(name="disease")
+@Table(name="disease_info")
 public class DiseaseInfo extends IdEntity {
 	
 	/**
@@ -43,7 +47,15 @@ public class DiseaseInfo extends IdEntity {
 	 * 疾病预防
 	 */
 	private String disease_prevention;
+	/**
+	 * 查询类型: 按部位,按科室
+	 */
+	private String from_type;
 	
+	
+	@Lob
+	@Basic(fetch = FetchType.EAGER)
+	@Column(nullable=false,columnDefinition="longtext")
 	public String getDisease_description() {
 		return disease_description;
 	}
@@ -52,6 +64,9 @@ public class DiseaseInfo extends IdEntity {
 		this.disease_description = disease_description;
 	}
 	
+	@Lob
+	@Basic(fetch = FetchType.EAGER)
+	@Column(nullable=false,columnDefinition="longtext")
 	public String getClinical_feature() {
 		return clinical_feature;
 	}
@@ -60,6 +75,9 @@ public class DiseaseInfo extends IdEntity {
 		this.clinical_feature = clinical_feature;
 	}
 	
+	@Lob
+	@Basic(fetch = FetchType.EAGER)
+	@Column(nullable=false,columnDefinition="longtext")
 	public String getDisease_prevention() {
 		return disease_prevention;
 	}
@@ -68,6 +86,7 @@ public class DiseaseInfo extends IdEntity {
 		this.disease_prevention = disease_prevention;
 	}
 	
+	@Column(nullable=false)
 	public String getBodyPartType() {
 		return bodyPartType;
 	}
@@ -76,6 +95,7 @@ public class DiseaseInfo extends IdEntity {
 		this.bodyPartType = bodyPartType;
 	}
 
+	@Column(nullable=false)
 	public String getDisease() {
 		return disease;
 	}
@@ -84,6 +104,7 @@ public class DiseaseInfo extends IdEntity {
 		this.disease = disease;
 	}
 
+	@Column(nullable=false)
 	public String getDepartment() {
 		return department;
 	}
@@ -92,12 +113,22 @@ public class DiseaseInfo extends IdEntity {
 		this.department = department;
 	}
 
+	@Column(nullable=false)
 	public String getSymptoms() {
 		return symptoms;
 	}
 
 	public void setSymptoms(String symptoms) {
 		this.symptoms = symptoms;
+	}
+
+	@Column(nullable=false)
+	public String getFrom_type() {
+		return from_type;
+	}
+
+	public void setFrom_type(String from_type) {
+		this.from_type = from_type;
 	}
 
 	@Override

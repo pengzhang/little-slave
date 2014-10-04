@@ -34,6 +34,10 @@ public class BodyPartDiseaseService {
 	public BodyPartDisease findByCode(String code) {
 		return bodyPartDiseaseDao.findByCode(code);
 	}
+	
+	public long getCount() {
+		return bodyPartDiseaseDao.count();
+	}
 
 	/**
 	 * 创建分页请求.

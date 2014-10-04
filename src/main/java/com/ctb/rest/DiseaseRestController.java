@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import com.ctb.entity.disease.BodyPartDisease;
 import com.ctb.service.disease.BodyPartDiseaseService;
 import com.ctb.service.disease.SinaHealthDepartmentCollect;
+import com.ctb.service.disease.SinaHealthDiseaseCollect;
 import com.ctb.service.disease.SinaHealthPartCollect;
 import com.ctb.util.ConfigUtil;
 import com.wordnik.swagger.annotations.Api;
@@ -34,7 +35,7 @@ import com.wordnik.swagger.annotations.ApiResponses;
  */
 
 @Path("/collect")
-@Api(value = "/collect", description = "健康自检管理")
+@Api(value = "/collect", description = "新浪健康频道采集管理")
 @Component
 public class DiseaseRestController {
 
@@ -45,6 +46,9 @@ public class DiseaseRestController {
 	
 	@Autowired
 	private SinaHealthDepartmentCollect sinaHealthDepartmentCollect;
+	
+	@Autowired
+	private SinaHealthDiseaseCollect sinaHealthDiseaseCollect;
 
 	@Autowired
 	private BodyPartDiseaseService bodyPartDiseaseService;
@@ -71,6 +75,33 @@ public class DiseaseRestController {
 		sinaHealthDepartmentCollect.collectHospitalDepartmentInfo(ConfigUtil.readValue("sina_health_knx"));
 		logger.info("按科室疾病信息数据采集完毕!");
 		return RestMessage.getMessageBean("department_disease_collect");
+	}
+	
+	@GET
+	@Path("/disease/detail")
+	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "采集疾病详细信息数据", notes = "从新浪健康频道,采集疾病详细信息数据", response = String.class)
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "创建失败"), @ApiResponse(code = 404, message = "地址无效") })
+	public MessageBean disease_detail() {
+		logger.info("开始疾病详细信息数据...");
+		sinaHealthDiseaseCollect.collectBodyPartDiseaseInfo();
+		sinaHealthDiseaseCollect.collectDepartmentDiseaseInfo();
+		logger.info("疾病详细信息采集完毕!");
+		return RestMessage.getMessageBean("disease_detail_collect");
+	}
+	
+	@GET
+	@Path("/disease/detail/{code}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "采集疾病详细信息数据,指定Code", notes = "从新浪健康频道,采集疾病详细信息数据,指定Code", response = String.class)
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "创建失败"), @ApiResponse(code = 404, message = "地址无效") })
+	public MessageBean disease_detail_code(
+			@ApiParam(value = "Code", required = true) @PathParam("code") String code
+			) {
+		logger.info("开始疾病详细信息数据...");
+		sinaHealthDiseaseCollect.collectBodyPartDiseaseInfo(code);
+		logger.info("疾病详细信息采集完毕!");
+		return RestMessage.getMessageBean("disease_detail_collect");
 	}
 
 	@GET

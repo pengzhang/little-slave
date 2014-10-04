@@ -1,7 +1,6 @@
 package com.ctb.rest;
 
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 import javax.ws.rs.WebApplicationException;
@@ -19,19 +18,15 @@ public class JerseyException extends WebApplicationException {
 	public JerseyException(ErrorBean error) {
 		super(Response.serverError().entity(error).status(200).build());
 	}
-	
+
 	public JerseyException(String code) {
 		super(Response.serverError().entity(getErrorBean(code)).status(200).build());
 	}
-	
+
 	public static ErrorBean getErrorBean(String code) {
 		ErrorBean errorBean = new ErrorBean();
 		errorBean.setCode(code);
-		try {
-			errorBean.setError(new String(readValue(code).getBytes(),"utf-8"));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+		errorBean.setError(readValue(code));
 		return errorBean;
 	}
 

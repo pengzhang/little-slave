@@ -30,12 +30,12 @@ public class JsoupUtil {
 	public static Document getDoc(String url) {
 		Document doc = null;
 		try {
-			doc = Jsoup.connect(url).get();
-		} catch (IOException e) {
+			doc = Jsoup.connect(url).userAgent("Mozilla").timeout(3000).get();
+			return doc;
+		} catch (Exception e) {
 			logger.info("collect url error, url:" + url);
-			e.printStackTrace();
 		}
-		return doc;
+		return null;
 	}
 
 	/**

@@ -31,6 +31,7 @@
 				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop> 
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.formate_sql">false</prop>
 			</props>
 		</property>
 	</bean>

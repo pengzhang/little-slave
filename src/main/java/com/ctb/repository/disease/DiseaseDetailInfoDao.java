@@ -7,10 +7,10 @@ package com.ctb.repository.disease;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.ctb.entity.disease.DiseaseDescDetailInfo;
+import com.ctb.entity.disease.DiseaseDetailInfo;
 
-public interface DiseaseDescDetailInfoDao extends PagingAndSortingRepository<DiseaseDescDetailInfo, Long> {
+public interface DiseaseDetailInfoDao extends PagingAndSortingRepository<DiseaseDetailInfo, Long> {
 
-	DiseaseDescDetailInfo findByCode(String code);
+	DiseaseDetailInfo findByCode(String code);
 
 }
