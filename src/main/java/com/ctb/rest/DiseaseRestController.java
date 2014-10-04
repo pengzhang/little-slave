@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import com.ctb.entity.disease.BodyPartDisease;
 import com.ctb.service.disease.BodyPartDiseaseService;
+import com.ctb.service.disease.SinaHealthDepartmentCollect;
 import com.ctb.service.disease.SinaHealthPartCollect;
 import com.ctb.util.ConfigUtil;
 import com.wordnik.swagger.annotations.Api;
@@ -32,8 +33,8 @@ import com.wordnik.swagger.annotations.ApiResponses;
  * @author zp
  */
 
-@Path("/disease")
-@Api(value = "/disease", description = "健康自检管理")
+@Path("/collect")
+@Api(value = "/collect", description = "健康自检管理")
 @Component
 public class DiseaseRestController {
 
@@ -41,24 +42,39 @@ public class DiseaseRestController {
 
 	@Autowired
 	private SinaHealthPartCollect sinaHealthPartCollect;
+	
+	@Autowired
+	private SinaHealthDepartmentCollect sinaHealthDepartmentCollect;
 
 	@Autowired
 	private BodyPartDiseaseService bodyPartDiseaseService;
 
 	@GET
-	@Path("/collect")
+	@Path("/bodypart")
 	@Produces(MediaType.APPLICATION_JSON)
 	@ApiOperation(value = "采集按部位疾病信息", notes = "从新浪健康频道,采集按部位疾病信息", response = String.class)
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "创建失败"), @ApiResponse(code = 404, message = "地址无效") })
-	public MessageBean collet() {
+	public MessageBean bodypart() {
 		logger.info("开始采集按部位疾病信息数据...");
 		sinaHealthPartCollect.collectBodyPartInfo(ConfigUtil.readValue("sina_health_btb"));
 		logger.info("按部位疾病信息数据采集完毕!");
 		return RestMessage.getMessageBean("body_part_disease_collect");
 	}
+	
+	@GET
+	@Path("/department")
+	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "采集按科室疾病信息", notes = "从新浪健康频道,采集按科室疾病信息", response = String.class)
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "创建失败"), @ApiResponse(code = 404, message = "地址无效") })
+	public MessageBean department() {
+		logger.info("开始采集按科室疾病信息数据...");
+		sinaHealthDepartmentCollect.collectHospitalDepartmentInfo(ConfigUtil.readValue("sina_health_knx"));
+		logger.info("按科室疾病信息数据采集完毕!");
+		return RestMessage.getMessageBean("department_disease_collect");
+	}
 
 	@GET
-	@Path("/get/page/{page}/size/{size}")
+	@Path("/get/bodypart/disease/page/{page}/size/{size}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@ApiOperation(value = "分页获取部位疾病信息", notes = "分页获取部位疾病信息", response = BodyPartDisease.class, responseContainer = "List")
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "创建失败"), @ApiResponse(code = 404, message = "地址无效") })
