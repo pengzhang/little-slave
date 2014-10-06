@@ -1,5 +1,7 @@
 package com.ctb.service.disease;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -33,6 +35,14 @@ public class BodyPartDiseaseService {
 
 	public BodyPartDisease findByCode(String code) {
 		return bodyPartDiseaseDao.findByCode(code);
+	}
+	
+	public List<BodyPartDisease> findBybodyPartType(String bodypartType) {
+		return bodyPartDiseaseDao.findBybodyPartType(bodypartType);
+	}
+	
+	public List<BodyPartDisease> findBybodyPart(String bodypart) {
+		return bodyPartDiseaseDao.findBybodyPart(bodypart);
 	}
 	
 	public long getCount() {

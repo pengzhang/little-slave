@@ -47,7 +47,7 @@ public class SinaHealthDiseaseCollect {
 						logger.info("按部位疾病,网址错误,忽略,Code:" + disease.getCode());
 						continue;
 					}
-					collectDiseaseInfo(disease.getDiseaseUrl(), "body_part");
+					collectDiseaseInfo(disease.getDiseaseUrl(), "body_part",disease.getCode());
 					collectDiseaseDetailInfo(disease.getDiseaseUrl(), disease.getCode());
 					logger.info("按部位疾病:" + disease.getBodyPart() + ",Code:" + disease.getCode() + ",采集完毕,已采集" + (m++) + "个疾病信息");
 				}
@@ -60,7 +60,7 @@ public class SinaHealthDiseaseCollect {
 	 */
 	public void collectBodyPartDiseaseInfo(String code) {
 		BodyPartDisease disease = bodyPartDiseaseService.findByCode(code);
-		collectDiseaseInfo(disease.getDiseaseUrl(), "body_part");
+		collectDiseaseInfo(disease.getDiseaseUrl(), "body_part",disease.getCode());
 		collectDiseaseDetailInfo(disease.getDiseaseUrl(), disease.getCode());
 		logger.info("按部位疾病:" + disease.getBodyPart() + ",Code:" + disease.getCode() + ",采集完毕");
 	}
@@ -79,7 +79,7 @@ public class SinaHealthDiseaseCollect {
 						logger.info("按科室疾病,网址错误,忽略,Code:" + disease.getCode());
 						continue;
 					}
-					collectDiseaseInfo(disease.getDiseaseUrl(), "department");
+					collectDiseaseInfo(disease.getDiseaseUrl(), "department",disease.getCode());
 					collectDiseaseDetailInfo(disease.getDiseaseUrl(), disease.getCode());
 					logger.info("按科室疾病:" + disease.getDepartment() + ",Code:" + disease.getCode() + ",采集完毕,已采集" + (m++) + "个疾病信息");
 				}
@@ -92,10 +92,11 @@ public class SinaHealthDiseaseCollect {
 	 * 
 	 * @param url
 	 */
-	private void collectDiseaseInfo(String url, String from_type) {
+	private void collectDiseaseInfo(String url, String from_type, String disease_code) {
 
 		DiseaseInfo diseaseInfo = new DiseaseInfo();
 		diseaseInfo.setFrom_type(from_type);
+		diseaseInfo.setCode(disease_code);
 		Document doc = JsoupUtil.getDoc(url);
 		if (doc != null) {
 			Element element = doc.select(".main_C .C_box1").first();
@@ -118,7 +119,7 @@ public class SinaHealthDiseaseCollect {
 
 	private void collectDiseaseDetailInfo(String url, String disease_code) {
 		DiseaseDetailInfo diseaseDetailInfo = new DiseaseDetailInfo();
-		diseaseDetailInfo.setDisease_code(disease_code);
+		diseaseDetailInfo.setCode(disease_code);
 		diseaseDetailInfo.setClinical_feature_detail(getDetailInfo(url + "zhengzhuang.html"));
 		diseaseDetailInfo.setDisease_check_detail(getDetailInfo(url + "jiancha.html"));
 		diseaseDetailInfo.setDisease_cure_detail(getDetailInfo(url + "zhiliao.html"));

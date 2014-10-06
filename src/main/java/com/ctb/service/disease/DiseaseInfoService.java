@@ -22,4 +22,8 @@ public class DiseaseInfoService {
 	public void save(DiseaseInfo disease_info){
 		diseaseInfoDao.save(disease_info);
 	}
+	
+	public DiseaseInfo getDiseaseInfo(String code){
+		return diseaseInfoDao.findByCode(code);
+	}
 }

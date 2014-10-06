@@ -5,6 +5,8 @@
  *******************************************************************************/
 package com.ctb.repository.disease;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -14,6 +16,10 @@ import com.ctb.entity.disease.BodyPartDisease;
 public interface BodyPartDiseaseDao extends PagingAndSortingRepository<BodyPartDisease, Long> {
 
 	BodyPartDisease findByCode(String code);
+	
+	List<BodyPartDisease> findBybodyPartType(String bodypart);
+	
+	List<BodyPartDisease> findBybodyPart(String bodypart);
 	
 	Page<BodyPartDisease> findAll(Pageable pageRequest);
 

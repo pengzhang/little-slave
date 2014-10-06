@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<!--HTML5 doctype-->
+<html>
+
+    <head>
+        <script>
+        (function() {
+    if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+        var msViewportStyle = document.createElement("style");
+        msViewportStyle.appendChild(
+            document.createTextNode("@-ms-viewport{width:auto!important}")
+        );
+        document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+    }
+})();
+</script>
+
+        <title>健康网</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="stylesheet" type="text/css" href="css/icons.css" />    
+ 
+       <!--   
+     <link rel="stylesheet" type="text/css" href="/stylesheets/af.ui.css" title="default" />
+  -->
+      <link rel="stylesheet" type="text/css" href="/stylesheets/main.css"  />
+      <link rel="stylesheet" type="text/css" href="/stylesheets/appframework.css"  />
+      <link rel="stylesheet" type="text/css" href="/stylesheets/lists.css"  />
+      <link rel="stylesheet" type="text/css" href="/stylesheets/forms.css"  />
+      <link rel="stylesheet" type="text/css" href="/stylesheets/buttons.css"  />        
+      <link rel="stylesheet" type="text/css" href="/stylesheets/badges.css"  />        
+      <link rel="stylesheet" type="text/css" href="/stylesheets/grid.css"  />
+
+
+      <link rel="stylesheet" type="text/css" href="/javascripts/plugins/css/af.actionsheet.css"  />
+      <link rel="stylesheet" type="text/css" href="/javascripts/plugins/css/af.popup.css"  />
+      <link rel="stylesheet" type="text/css" href="/javascripts/plugins/css/af.scroller.css"  />
+      <link rel="stylesheet" type="text/css" href="/javascripts/plugins/css/af.selectBox.css"  />        
+        
+        <!-- uncomment for intel.xdk apps 
+        <script type="text/javascript" charset="utf-8" src="/javascripts/intelxdk.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/xhr.js"></script>
+        -->
+        <script type="text/javascript" charset="utf-8" src="/javascripts/appframework.js"></script>
+        <!-- include af.desktopBrowsers.js on desktop browsers only -->
+        <script>
+
+            function unloadedPanel(what) {
+                console.log("unloaded " + what.id);
+            }
+
+            if (!((window.DocumentTouch && document instanceof DocumentTouch) || 'ontouchstart' in window)) {
+                var script = document.createElement("script");
+                script.src = "/javascripts/plugins/af.desktopBrowsers.js";
+                var tag = $("head").append(script);
+                //$.os.desktop=true;
+            }
+
+          //  $.feat.nativeTouchScroll=true;
+          
+        </script>        
+        <script type="text/javascript" charset="utf-8" src="/javascripts/plugins/af.actionsheet.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/plugins/af.css3animate.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/plugins/af.passwordBox.js"></script>          
+        <script type="text/javascript" charset="utf-8" src="/javascripts/plugins/af.scroller.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/plugins/af.selectBox.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/plugins/af.touchEvents.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/plugins/af.touchLayer.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/plugins/af.popup.js"></script>
+
+        <script type="text/javascript" charset="utf-8" src="/javascripts/ui/appframework.ui.js"></script>
+        <!-- <script type="text/javascript" charset="utf-8" src="/javascripts/ui/transitions/all.js"></script> -->
+        <script type="text/javascript" charset="utf-8" src="/javascripts/ui/transitions/fade.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/ui/transitions/flip.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/ui/transitions/pop.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/ui/transitions/slide.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/ui/transitions/slideDown.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/ui/transitions/slideUp.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/plugins/af.slidemenu.js"></script>
+        <script type="text/javascript" charset="utf-8" src="/javascripts/plugins/af.8tiles.js"></script>
+
+
+        <script type="text/javascript">
+            /* This function runs once the page is loaded, but intel.xdk is not yet active */
+            //$.ui.animateHeaders=false;
+             var search=document.location.search.toLowerCase().replace("?","");
+             //if(!search)
+            $.ui.useOSThemes=true;
+            $.ui.overlayStatusbar=true; // for ios7 only to add header padding to overlay the statusbar
+           // $.ui.resetScrollers=true;
+
+
+            var webRoot = "./";
+            // $.os.android=true;
+            $.ui.autoLaunch = false;
+            $.ui.openLinksNewTab = false;
+            $.ui.splitview=false;
+
+
+            $(document).ready(function(){
+                $.ui.launch();
+            });
+
+            /* This code is used to run as soon as intel.xdk activates */
+            var onDeviceReady = function () {
+                $.ui.launch();
+                intel.xdk.device.setRotateOrientation("portrait");
+                intel.xdk.device.setAutoRotate(false);
+                webRoot = intel.xdk.webRoot + "";
+                //hide splash screen
+                intel.xdk.device.hideSplashScreen();
+                $.ui.blockPageScroll(); //block the page from scrolling at the header/footer
+            };
+            document.addEventListener("intel.xdk.device.ready", onDeviceReady, false);
+
+            function showHide(obj, objToHide) {
+                var el = $("#" + objToHide)[0];
+
+                if (obj.className == "expanded") {
+                    obj.className = "collapsed";
+                } else {
+                    obj.className = "expanded";
+                }
+                $(el).toggle();
+
+            }
+
+        </script>
+
+</head>
+
+    <body>
+        <div id="afui">
+            <!-- this is the splashscreen you see. -->
+            <div id="splashscreen" class='ui-loader heavy'>
+                健康自检
+                <br>
+                <br>    <span class='ui-icon ui-icon-loading spin'></span>
+                <h1>启动应用</h1>
+
+            </div>
+            <div id="header">
+                <a id='menubadge' onclick='af.ui.toggleSideMenu()' class='menuButton'></a>                 
+            </div>
+            <div id="content">
+                <div title='<%= disease%>' id="main" class="panel" selected="true" data-load="loadedPanel" data-unload="unloadedPanel" data-tab="navbar_home">
+                    <h2 onclick='showHide(this,"disease_description_info");'><%= disease%>的病因</h2>
+                    <p id='disease_description_info'><%= result.disease_description_detail%></p>
+                    <h2 onclick='showHide(this,"clinical_feature_info");'><%= disease%>的表现</h2>
+                    <p id='clinical_feature_info'><%= result.clinical_feature_detail%></p>
+                    <h2 onclick='showHide(this,"disease_prevention_info");'><%= disease%>的防治</h2>
+                    <p id='disease_prevention_info'><%= result.disease_prevention_detail%></p>
+                    <h2 onclick='showHide(this,"clinical_feature_info");'><%= disease%>的检查</h2>
+                    <p id='clinical_feature_info'><%= result.disease_check_detail%></p>
+                    <h2 onclick='showHide(this,"disease_prevention_info");'><%= disease%>的治疗</h2>
+                    <p id='disease_prevention_info'><%= result.disease_cure_detail%></p>
+				</div>
+            </div>
+            <!-- ------------------------------------------ -->
+            <!-- navbar -->
+            
+            <div id="navbar">
+                <a href="#main/1/3" id='navbar_home' class='icon home'>健康自检</a>
+                <a href="#af" id='navbar_js' class="icon target">保健常识</a>
+                <a href="#afuidemo" id='navbar_ui' class="icon picture">药品查询</a>
+                <a href="#afweb" id='navbar_plugins' class="icon key">医院查询</a>
+            </div>
+
+            <!-- ------------------------------------------ -->
+            <nav title="健康网">
+                <ul class="list">
+                    <li class="divider" class="icon home">健康中心</li>
+                    <li>
+                        <a href="#af">健康自检</a>
+                    </li>
+                    <li>
+                        <a href="#aftransitions">保健常识</a>
+                    </li>
+                    <li>
+                        <a href="#afuidemo">药品查询</a>
+                    </li>
+                    <li>
+                        <a href="#uiapi">医院查询</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <aside title="健康网">
+                <p>这是一个Demo的健康网</p>
+            </aside>
+        </div>
+
+    </body>
+</html>

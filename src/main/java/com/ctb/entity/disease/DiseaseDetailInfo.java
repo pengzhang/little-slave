@@ -20,10 +20,6 @@ import com.ctb.entity.IdEntity;
 public class DiseaseDetailInfo extends IdEntity {
 	
 	/**
-	 * 疾病code
-	 */
-	private String disease_code;
-	/**
 	 * 疾病概述详细信息
 	 */
 	private String disease_description_detail;
@@ -53,14 +49,6 @@ public class DiseaseDetailInfo extends IdEntity {
 
 	public void setDisease_description_detail(String disease_description_detail) {
 		this.disease_description_detail = disease_description_detail;
-	}
-	@Column(nullable=false)
-	public String getDisease_code() {
-		return disease_code;
-	}
-
-	public void setDisease_code(String disease_code) {
-		this.disease_code = disease_code;
 	}
 
 	@Lob
