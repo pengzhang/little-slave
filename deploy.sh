@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT=little_slave
+PROJECT=little-slave
 SRC_HOME=/alidata1/project_src
 TOMCAT_HOME=/alidata1/service/$PROJECT
 
