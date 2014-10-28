@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.ctb.entity.IdEntity;
 
 @Entity
-@Table(name="hospital_rank")
+@Table(name="gh_hospital_rank")
 public class HospitalRank extends IdEntity {
 	/**
 	 * 排名次

@@ -12,8 +12,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.ctb.entity.IdEntity;
 
 @Entity
-@Table(name="hospital")
+@Table(name="gh_hospital")
 public class Hospital extends IdEntity {
+	
+	/**
+	 * 挂号网Code
+	 */
+	private String ghCode;
 	/**
 	 * 医院名称
 	 */
@@ -34,6 +39,15 @@ public class Hospital extends IdEntity {
 	 * 简介
 	 */
 	private String hospitalDesc;
+	
+	@Column(nullable=false)
+	public String getGhCode() {
+		return ghCode;
+	}
+
+	public void setGhCode(String ghCode) {
+		this.ghCode = ghCode;
+	}
 
 	@Column(nullable=false)
 	public String getHospitalName() {

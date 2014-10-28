@@ -33,8 +33,8 @@ import com.wordnik.swagger.annotations.ApiResponses;
  * @author zp
  */
 
-@Path("/collect")
-@Api(value = "/collect", description = "新浪健康频道采集管理")
+@Path("/collect/sina")
+@Api(value = "/collect/sina", description = "新浪健康频道采集管理")
 @Component
 public class DiseaseRestController {
 

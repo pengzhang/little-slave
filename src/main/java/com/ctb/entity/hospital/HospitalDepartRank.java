@@ -9,7 +9,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.ctb.entity.IdEntity;
 
 @Entity
-@Table(name="hospital_rank")
+@Table(name="gh_hospital_depart_rank")
 public class HospitalDepartRank extends IdEntity {
 	/**
 	 * 排名次
@@ -18,7 +18,7 @@ public class HospitalDepartRank extends IdEntity {
 	/**
 	 * 医院科室Code
 	 */
-	private String hospitalDepartCode;
+	private String hospitalDepart;
 	/**
 	 * 医院名称
 	 */
@@ -41,18 +41,18 @@ public class HospitalDepartRank extends IdEntity {
 		this.rankId = rankId;
 	}
 	@Column(nullable=false)
-	public String getHospitalDepartCode() {
-		return hospitalDepartCode;
+	public String getHospitalDepart() {
+		return hospitalDepart;
 	}
 
-	public void setHospitalDepartCode(String hospitalDepartCode) {
-		this.hospitalDepartCode = hospitalDepartCode;
+	public void setHospitalDepart(String hospitalDepart) {
+		this.hospitalDepart = hospitalDepart;
 	}
 	@Column(nullable=false)
 	public String getHospitalName() {
 		return hospitalName;
 	}
-
+	
 	public void setHospitalName(String hospitalName) {
 		this.hospitalName = hospitalName;
 	}
