@@ -16,14 +16,14 @@ public class RestMessage {
 	}
 
 	public static String getMessageBeanToString(String code) {
-		MessageBean msgBean = new MessageBean();
+		ReturnMessageBean msgBean = new ReturnMessageBean();
 		msgBean.setCode(code);
 		msgBean.setMessage(readValue(code));
 		return new JsonMapper().toJson(getMessageBean(code)).toString();
 	}
 
-	public static MessageBean getMessageBean(String code) {
-		MessageBean msgBean = new MessageBean();
+	public static ReturnMessageBean getMessageBean(String code) {
+		ReturnMessageBean msgBean = new ReturnMessageBean();
 		msgBean.setCode(code);
 		msgBean.setMessage(readValue(code));
 		return msgBean;
@@ -43,24 +43,4 @@ public class RestMessage {
 	}
 }
 
-class MessageBean {
-	private String code;
-	private String message;
 
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-}

@@ -15,18 +15,18 @@ public class JerseyException extends WebApplicationException {
 
 	private static final long serialVersionUID = 1L;
 
-	public JerseyException(ErrorBean error) {
+	public JerseyException(ReturnMessageBean error) {
 		super(Response.serverError().entity(error).status(200).build());
 	}
 
 	public JerseyException(String code) {
-		super(Response.serverError().entity(getErrorBean(code)).status(200).build());
+		super(Response.serverError().entity(getMessageBean(code)).status(200).build());
 	}
 
-	public static ErrorBean getErrorBean(String code) {
-		ErrorBean errorBean = new ErrorBean();
+	public static ReturnMessageBean getMessageBean(String code) {
+		ReturnMessageBean errorBean = new ReturnMessageBean();
 		errorBean.setCode(code);
-		errorBean.setError(readValue(code));
+		errorBean.setMessage(readValue(code));
 		return errorBean;
 	}
 
@@ -43,25 +43,4 @@ public class JerseyException extends WebApplicationException {
 		}
 	}
 
-}
-
-class ErrorBean {
-	private String code;
-	private String error;
-
-	public String getError() {
-		return error;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public void setError(String error) {
-		this.error = error;
-	}
 }

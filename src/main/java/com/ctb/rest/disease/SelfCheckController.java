@@ -3,7 +3,7 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *******************************************************************************/
-package com.ctb.rest;
+package com.ctb.rest.disease;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
