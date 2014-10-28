@@ -1,4 +1,4 @@
-package com.ctb.service.disease;
+package com.ctb.service.disease.collect;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.ctb.service.disease;
+package com.ctb.service.disease.collect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
 import com.ctb.entity.disease.BodyPart;
 import com.ctb.entity.disease.BodyPartDisease;
 import com.ctb.repository.disease.DiseaseInfoDao;
+import com.ctb.service.disease.BodyPartDiseaseService;
+import com.ctb.service.disease.BodyPartService;
 import com.ctb.util.JsoupUtil;
 
 @Component

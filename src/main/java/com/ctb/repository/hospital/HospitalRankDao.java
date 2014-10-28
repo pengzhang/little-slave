@@ -3,11 +3,15 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  *******************************************************************************/
-package com.ctb.repository;
+package com.ctb.repository.hospital;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
-import com.ctb.entity.User;
 
-public interface UserDao extends PagingAndSortingRepository<User, Long> {
-	User findByLoginName(String loginName);
+import com.ctb.entity.hospital.HospitalRank;
+
+public interface HospitalRankDao extends PagingAndSortingRepository<HospitalRank, Long> {
+
+	HospitalRank findByCode(String code);
+
+
 }

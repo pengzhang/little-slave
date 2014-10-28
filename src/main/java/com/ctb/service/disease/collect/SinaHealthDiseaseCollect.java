@@ -1,4 +1,4 @@
-package com.ctb.service.disease;
+package com.ctb.service.disease.collect;
 
 import java.util.List;
 
@@ -14,6 +14,10 @@ import com.ctb.entity.disease.BodyPartDisease;
 import com.ctb.entity.disease.DepartmentDisease;
 import com.ctb.entity.disease.DiseaseDetailInfo;
 import com.ctb.entity.disease.DiseaseInfo;
+import com.ctb.service.disease.BodyPartDiseaseService;
+import com.ctb.service.disease.DepartmentDiseaseService;
+import com.ctb.service.disease.DiseaseDetailInfoService;
+import com.ctb.service.disease.DiseaseInfoService;
 import com.ctb.util.JsoupUtil;
 
 @Component

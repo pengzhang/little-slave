@@ -20,9 +20,9 @@ import org.springframework.stereotype.Component;
 
 import com.ctb.entity.disease.BodyPartDisease;
 import com.ctb.service.disease.BodyPartDiseaseService;
-import com.ctb.service.disease.SinaHealthDepartmentCollect;
-import com.ctb.service.disease.SinaHealthDiseaseCollect;
-import com.ctb.service.disease.SinaHealthPartCollect;
+import com.ctb.service.disease.collect.SinaHealthDepartmentCollect;
+import com.ctb.service.disease.collect.SinaHealthDiseaseCollect;
+import com.ctb.service.disease.collect.SinaHealthPartCollect;
 import com.ctb.util.ConfigUtil;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
