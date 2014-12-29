@@ -49,12 +49,14 @@ public class ApiAuthorizationFilterImpl implements SwaggerSpecFilter {
     if(isAuthorized) {
       return true;
     }
-    else {
-      if(!"GET".equals(operation.method()) || api.path().indexOf("/store") != -1) {
-        return false;
-      }
-      else return true;
-    }
+    //TODO 安全问题
+//    else {
+//      if(!"GET".equals(operation.method()) || api.path().indexOf("/store") != -1) {
+//        return false;
+//      }
+//      else return true;
+//    }
+    return true;
   }
 
   public boolean isParamAllowed(Parameter parameter, Operation operation, ApiDescription api, Map<String, List<String>> params, Map<String, String> cookies, Map<String, List<String>> headers) {

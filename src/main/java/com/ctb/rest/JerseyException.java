@@ -18,6 +18,10 @@ public class JerseyException extends WebApplicationException {
 	public JerseyException(ReturnMessageBean error) {
 		super(Response.serverError().entity(error).status(200).build());
 	}
+	
+	public JerseyException(String code ,String message) {
+		super(Response.serverError().entity(new ReturnMessageBean(code, message)).status(200).build());
+	}
 
 	public JerseyException(String code) {
 		super(Response.serverError().entity(getMessageBean(code)).status(200).build());

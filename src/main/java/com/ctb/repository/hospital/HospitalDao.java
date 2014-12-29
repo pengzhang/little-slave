@@ -11,9 +11,9 @@ import com.ctb.entity.hospital.Hospital;
 
 public interface HospitalDao extends PagingAndSortingRepository<Hospital, Long> {
 
-	HospitalDao findByCode(String code);
+	Hospital findByCode(String code);
 	
-	HospitalDao findByHospitalName(String hospitalName);
+	Hospital findByHospitalName(String hospitalName);
 	
 
 }
