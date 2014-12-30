@@ -1,8 +1,11 @@
 package com.ctb.rest.user;
 
+import java.util.Map;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -40,7 +43,8 @@ public class UserController {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@ApiOperation(value = "用户信息管理", notes = "用户注册", response = String.class)
+	
+	@ApiOperation(value = "用户注册", notes = "用户信息管理-用户注册", response = String.class)
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "操作失败"), @ApiResponse(code = 404, message = "地址无效") })
 	public ObjectNode register(User user) {
 		try {
@@ -57,7 +61,7 @@ public class UserController {
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@ApiOperation(value = "用户信息管理", notes = "用户登录", response = String.class)
+	@ApiOperation(value = "用户登录", notes = "用户信息管理-用户登录", response = String.class)
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "操作失败"), @ApiResponse(code = 404, message = "地址无效") })
 	public ObjectNode login(User user) {
 		try {
@@ -73,7 +77,7 @@ public class UserController {
 	@Path("/get/user/{accessToken}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@ApiOperation(value = "用户信息管理", notes = "获取用户信息AccessToken", response = String.class)
+	@ApiOperation(value = "获取用户信息AccessToken", notes = "用户信息管理-获取用户信息AccessToken", response = String.class)
 	@ApiResponses(value = { @ApiResponse(code = 400, message = "操作失败"), @ApiResponse(code = 404, message = "地址无效") })
 	public JsonNode getLoginUserByAccessToken(
 			@ApiParam(value = "AccessToken", required = true) @PathParam("accessToken") String accessToken) {
@@ -82,6 +86,81 @@ public class UserController {
 		} catch (ServiceException e) {
 			log.info(accessToken + e.getMessage());
 			throw new JerseyException("100002", e.getMessage());
+		}
+	}
+	
+	@Path("/check/email")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "检查Email是否可用", notes = "用户信息管理-检查Email是否可用", response = String.class)
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "操作失败"), @ApiResponse(code = 404, message = "地址无效") })
+	public ObjectNode checkEmailExist(User user){
+		try{
+			boolean flag = userService.checkEmailExist(user);
+			return Json.newObject().put("status", flag);
+		}catch(ServiceException e){
+			throw new JerseyException("100003", e.getMessage());
+		}
+	}
+	
+	@Path("/check/mobile")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "检查Mobile是否可用", notes = "用户信息管理-检查Mobile是否可用", response = String.class)
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "操作失败"), @ApiResponse(code = 404, message = "地址无效") })
+	public ObjectNode checkMobileExist(User user){
+		try{
+			boolean flag = userService.checkMobileExist(user);
+			return Json.newObject().put("status", flag);
+		}catch(ServiceException e){
+			throw new JerseyException("100004", e.getMessage());
+		}
+	}
+	
+	@Path("/modify")
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "修改用户信息", notes = "用户信息管理-修改用户信息", response = String.class)
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "操作失败"), @ApiResponse(code = 404, message = "地址无效") })
+	public ObjectNode modifyUser(User user){
+		try{
+			boolean flag = userService.modifyUser(user);
+			return Json.newObject().put("status", flag);
+		}catch(ServiceException e){
+			throw new JerseyException("100005", e.getMessage());
+		}
+	}
+	
+	@Path("/modify/password")
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "修改用户密码", notes = "用户信息管理-修改用户密码", response = String.class)
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "操作失败"), @ApiResponse(code = 404, message = "地址无效") })
+	public ObjectNode modifyPassword(Map<String,String> map){
+		try{
+			boolean flag = userService.modifyPassword(map.get("username"), map.get("oldpassword"), map.get("newpassword"), true);
+			return Json.newObject().put("status", flag);
+		}catch(ServiceException e){
+			throw new JerseyException("100006", e.getMessage());
+		}
+	}
+	
+	@Path("/modify/new/password")
+	@PUT
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "重置用户密码", notes = "用户信息管理-重置用户密码", response = String.class)
+	@ApiResponses(value = { @ApiResponse(code = 400, message = "操作失败"), @ApiResponse(code = 404, message = "地址无效") })
+	public ObjectNode modifyNewPassword(Map<String,String> map){
+		try{
+			boolean flag = userService.modifyPassword(map.get("username"), map.get("oldpassword"), map.get("newpassword"), false);
+			return Json.newObject().put("status", flag);
+		}catch(ServiceException e){
+			throw new JerseyException("100007", e.getMessage());
 		}
 	}
 }

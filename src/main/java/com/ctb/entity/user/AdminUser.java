@@ -2,6 +2,8 @@ package com.ctb.entity.user;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.ctb.entity.IdEntity;
@@ -17,13 +19,14 @@ public class AdminUser extends IdEntity{
 	private boolean isAdmin;
 	private Date registerDate;
 	
-	
+	@Column(nullable=false)
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	@Column(nullable=false)
 	public String getPassword() {
 		return password;
 	}
